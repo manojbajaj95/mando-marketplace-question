@@ -1,4 +1,4 @@
-entrypoint = "fastapi dev main:app"
+entrypoint = "uvicorn main:app --reload"
 modules = ["python-3.10"]
 
 hidden = [".pythonlibs"]

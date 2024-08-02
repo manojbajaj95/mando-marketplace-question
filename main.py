@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from database import database
+from database import create_db_and_tables
 from routes import admin, companies, experts, marketplace
 
 app = FastAPI()
@@ -14,9 +14,8 @@ app.include_router(marketplace.router)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await database.connect()
+    create_db_and_tables()
     yield
-    await database.disconnect()
 
 
 @app.get("/")
